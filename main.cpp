@@ -6,9 +6,11 @@ float h; // Delta-x
 
 const int X=0; const int Y=1; // For the ordered pair initial[]
 
+
+// This function is kind of a relic from when I used this program by hardcoding in functions
 float diffEq(float x, float y) {
 
-	return eval(expression, x, y, errval); // <------ Change this
+	return eval(expression, x, y, errval); // Evaluate the expression
 
 }
 
@@ -18,7 +20,10 @@ void Help() {
 	cout << "\tn and h represent the number of steps and the delta-x, respectively" << endl;
 }
 
-/* Returns -1 on failure */
+
+/* Processes arguments passed via command-line */
+/* ------------------------------------------- */
+/* Returns -1 on failure                       */
 int processArgs(int argc, string* args)
 {
 	if ((argc!=4)&&(args[1]!="--help")) {
@@ -51,6 +56,13 @@ int processArgs(int argc, string* args)
 	return 0;
 }
 
+
+/* Performs the actual Euler method on a function                         */
+/* ---------------------------------------------------------------------- */
+/* NOTE: I'm pretty sure I never got around to making this                */
+/* use the parsed expression. It's been a while so I don't quite remember */
+/* It most likely works but don't assume that. If a bug appears, it may   */
+/* have originated here                                                   */
 void Euler() {
 	float y[n+1];
 	y[0]=initial[Y];
@@ -92,6 +104,7 @@ int main(int argc, char* argv[])
 	
 	expression=shuntingYard(input);
 	
+	// Most of this output is just for debugging stuff. Useful.
 	if(err)
 	 	cout << vtos(expression) << endl;
 	 else {

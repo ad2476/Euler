@@ -8,6 +8,7 @@
 #ifndef _ALGEXP_H_
 	#define _ALGEXP_H_
 
+/* Error stuffs */
 vector<string> errors;
 const int ERR_POS=7; // Width of "ERROR: " substring
 const string PARENS_ERR="ERROR: Parenthesis mismatch";
@@ -21,6 +22,7 @@ const int DIVZERO=4; // Divide by zero
 const int IMAGINARY=5; // Imaginary number (nth root of negative number, where n%2==0)
 const int VAL=6; // Too many values somehow (bad parsing? bad input?)
 
+/* Operator stuffs */
 const int NUM_OPS=8;
 const string operators[NUM_OPS] = {".", "(",")","^","*","/","+","-"};
 

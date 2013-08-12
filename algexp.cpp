@@ -1,7 +1,7 @@
 #include "Euler.h"
 #include "AlgExp.h"
 
-string rel_var[2]={"x", "y"};
+string rel_var[2]={"x", "y"}; // Contains x and y as "relative variables"
 
 bool searchFor(string token, const string* list, const int size) {
 	for(int i=0; i<size; i++) {
@@ -186,14 +186,14 @@ float eval(float x, float y, int& errval) {
 	stack<float> values; // Stack of values to be evaluated
 	float operands[2]; // Array to contain the two operands (assuming n=2 arguments for any operator)
 	
-	string s_vars[2]={ftos(x), ftos(y)};
+	string s_vars[2]={ftos(x), ftos(y)}; // Store x and y in one array for easy iteration
 	
 	for(int thisvar=0; thisvar<2; thisvar++) // Substitute for each variable
 	{
 		vector<string> vec_var=shuntingYard(s_vars[thisvar]);
 	
 		cout << "Substituting variable... " << vtos(vec_var) << endl;
-		// Go through vector, inserting 'x' into all instances of variable
+		// Go through vector, inserting 'x' or 'y' into all instances of variable
 		for(int i=0; i<expression.size(); i++) {
 			if(expression[i]==rel_var[thisvar]) {
 				expression.erase(expression.begin()+i);
@@ -203,7 +203,7 @@ float eval(float x, float y, int& errval) {
 		}
 	}
 	
-	cout << "After substitution: " << vtos(expression) << endl;
+	cout << "After substitution: " << vtos(expression) << endl; // Debugging stuff, displays result
 
 	cout << "Parsing tokens..." << endl;
 	for(int i=0; i<expression.size(); i++) {
